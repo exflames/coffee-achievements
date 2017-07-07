@@ -11,7 +11,7 @@ import { List, ListItem } from 'material-ui/List';
 import MenuItem from 'material-ui/MenuItem';
 import Subheader from 'material-ui/Subheader';
 import { parse, format } from 'date-fns';
-import Badge from './Badge';
+import Badge, { ACHIEVEMENT_ICONS } from './Badge';
 import Badges from './Badges';
 import s from './Achievements.css';
 
@@ -23,7 +23,7 @@ function formatExcelTime(time) {
 }
 
 function navigate(target) {
-  window.location = `http://go.thumbtack.io/${target}`;
+  window.open(`http://go.thumbtack.io/${target}`);
 }
 
 class Achievements extends React.Component {
@@ -69,11 +69,19 @@ class Achievements extends React.Component {
             docked={false}
             open={this.state.open}
             onRequestChange={open => this.setState({ open })}
+            width={460}
           >
             <Subheader>go/coffee-achievements</Subheader>
             <MenuItem onTouchTap={this.navigateToMakeCoffee}>Getting Started</MenuItem>
             <MenuItem onTouchTap={this.navigateToForm}>Submit Form</MenuItem>
             <MenuItem onTouchTap={this.navigateToFAQ}>FAQ</MenuItem>
+            <Subheader>Achievements</Subheader>
+            {_.map(_.keys(ACHIEVEMENT_ICONS), name => (
+              <MenuItem key={name}>
+                <Badge name={name} size={32} style={{ marginRight: 8 }} />
+                {name}
+              </MenuItem>
+            ))}
           </Drawer>
           <List>
             {_.map(achievementPairs, ([emailAddress, achievements]) => [
@@ -85,7 +93,7 @@ class Achievements extends React.Component {
                   <Divider inset key={`${index}-divider`} />,
                   <ListItem
                     key={index}
-                    leftAvatar={Badge({ achievement })}
+                    leftAvatar={Badge({ name: achievement.achievement })}
                     primaryText={achievement.achievement}
                     secondaryText={formatExcelTime(achievement.timestamp)}
                   />,

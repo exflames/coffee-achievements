@@ -13,7 +13,7 @@ export default function Badges(props) {
         (<Badge
           style={{ marginLeft: 16, marginBottom: 8 }}
           key={achievement.timestamp}
-          achievement={achievement}
+          name={achievement.achievement}
         />),
       )}
     </div>

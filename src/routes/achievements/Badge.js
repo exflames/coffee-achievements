@@ -10,7 +10,7 @@ const DIFFICULTY = {
   HARD: 2,
 };
 
-const ACHIEVEMENT_ICONS = {
+export const ACHIEVEMENT_ICONS = {
   'Order on a Monday': {
     text: 'M',
     difficulty: DIFFICULTY.EASY,
@@ -59,11 +59,11 @@ DIFFICULTY_COLORS[DIFFICULTY.MEDIUM] = green500;
 DIFFICULTY_COLORS[DIFFICULTY.HARD] = amber500;
 
 export default function Badge(props) {
-  const { achievement, style } = props;
-  const glyph = ACHIEVEMENT_ICONS[achievement.achievement];
+  const { name, style, size } = props;
+  const glyph = ACHIEVEMENT_ICONS[name];
 
   return (
-    <Avatar style={style} backgroundColor={DIFFICULTY_COLORS[glyph.difficulty]}>
+    <Avatar size={size} style={style} backgroundColor={DIFFICULTY_COLORS[glyph.difficulty]}>
       {glyph.text || <FontAwesome name={glyph.fa_icon} />}
     </Avatar>
   );
@@ -71,16 +71,11 @@ export default function Badge(props) {
 
 Badge.defaultProps = {
   style: {},
+  size: 40,
 };
 
 Badge.propTypes = {
-  achievement: PropTypes.shape({
-    timestamp: PropTypes.number.isRequired,
-    emailAddress: PropTypes.string.isRequired,
-    achievement: PropTypes.string.isRequired,
-    requestUrl: PropTypes.string,
-    additionalNotes: PropTypes.string,
-    approved: PropTypes.bool,
-  }).isRequired,
+  name: PropTypes.string.isRequired,
   style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  size: PropTypes.number,
 };
