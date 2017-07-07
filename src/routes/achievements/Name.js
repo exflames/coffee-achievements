@@ -25,7 +25,7 @@ export default function Name(props) {
   const handle = emailAddress.split('@')[0];
   const color = intToRGB(hashCode(handle));
   return (
-    <Chip style={{ display: 'inline-flex', cursor: 'inherit' }}>
+    <Chip style={{ display: 'inline-flex', cursor: 'inherit', minWidth: 120 }}>
       <Avatar backgroundColor={color}>{handle[0].toUpperCase()}</Avatar>{handle}
     </Chip>
   );

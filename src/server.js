@@ -131,6 +131,7 @@ app.get('*', async (req, res, next) => {
     data.children = ReactDOM.renderToString(<App context={context}>{route.component}</App>);
     data.styles = [
       { id: 'css', cssText: [...css].join('') },
+      { id: 'font', cssText: "@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');" },
     ];
     data.scripts = ['https://use.fontawesome.com/bf835f2da2.js', assets.vendor.js];
     if (route.chunks) {

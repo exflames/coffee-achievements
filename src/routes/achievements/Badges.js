@@ -10,7 +10,11 @@ export default function Badges(props) {
     <div>
       <Name emailAddress={emailAddress} />
       {_.map(achievements, achievement =>
-        <Badge style={{ marginLeft: 16 }} key={achievement.timestamp} achievement={achievement} />,
+        (<Badge
+          style={{ marginLeft: 16, marginBottom: 8 }}
+          key={achievement.timestamp}
+          achievement={achievement}
+        />),
       )}
     </div>
   );
