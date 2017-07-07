@@ -132,7 +132,7 @@ app.get('*', async (req, res, next) => {
     data.styles = [
       { id: 'css', cssText: [...css].join('') },
     ];
-    data.scripts = [assets.vendor.js];
+    data.scripts = ['https://use.fontawesome.com/bf835f2da2.js', assets.vendor.js];
     if (route.chunks) {
       data.scripts.push(...route.chunks.map(chunk => assets[chunk].js));
     }
